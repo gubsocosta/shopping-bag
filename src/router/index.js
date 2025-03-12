@@ -1,17 +1,17 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
-import Home from '../views/Home.vue';
-import Basket from '../views/Basket.vue';
+import HomePageView from '../views/HomePageView.vue';
+import ShopppingBasketView from '../views/ShopppingBasketView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'HomePage',
+    component: HomePageView
   },
   {
     path: '/basket',
-    name: 'Basket',
-    component: Basket
+    name: 'ShoppingBasket',
+    component: ShopppingBasketView
   }
 ];
 
