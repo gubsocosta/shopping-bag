@@ -5,12 +5,12 @@ import Basket from '../views/Basket.vue';
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home
   },
   {
-    path: '/shopping-basket',
-    name: 'basket',
+    path: '/basket',
+    name: 'Basket',
     component: Basket
   }
 ];
