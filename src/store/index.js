@@ -3,14 +3,18 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    products: []
+    products: [],
+    productsInBag: []
   },
   getters: {
   },
   mutations: {
     loadProducts(state, products) {
-      console.log(products);
       state.products = products;
+    },
+
+    addToBag(state, product) {
+      state.productsInBag.push(product);
     }
   },
   actions: {
@@ -19,6 +23,10 @@ export default createStore({
         .then(response => {
           commit('loadProducts', response.data);
         });
+    },
+
+    addToBag({ commit }, product) {
+      commit('addToBag', product);
     }
   },
   modules: {
