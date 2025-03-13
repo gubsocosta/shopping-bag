@@ -16,10 +16,18 @@
         <h4>{{ product.title }}</h4>
         <p class="price">US$ {{ product.price.toFixed(2) }}</p>
         <button
-            v-if="!isInBag(product)"
-            @click="addToBag(product)"
-        >Add to bag</button>
-        <button v-else class="remove">Remove from bag</button>
+          v-if="!isInBag(product)"
+          @click="addToBag(product)"
+        >
+          Add to bag
+        </button>
+        <button
+          v-else
+          class="remove"
+          @click="this.$store.dispatch('removeFromBag', product.id)"
+        >
+          Remove from bag
+        </button>
       </div>
     </div>
 
@@ -35,6 +43,7 @@ export default {
     products() {
       return this.$store.state.products;
     },
+
     productsInBag() {
       return this.$store.state.productsInBag;
     }
@@ -44,6 +53,7 @@ export default {
       product.quantity = 1;
       this.$store.dispatch('addToBag', product);
     },
+
     isInBag(product) {
       return this.productsInBag.find(item => item.id === product.id);
     }
