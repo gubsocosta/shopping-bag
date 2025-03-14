@@ -1,7 +1,7 @@
 <template>
   <div class="basket">
     <div class="items">
-      <template  v-if="productsInBag.length">
+      <template v-if="productsInBag.length">
         <div
             v-for="(product, index) in productsInBag"
             :key="index"
@@ -9,7 +9,7 @@
         >
           <div class="remove" @click="this.$store.dispatch('removeFromBag', product.id)">Remove item</div>
           <div class="photo">
-            <img :alt="product.name"  :src="product.image">
+            <img :alt="product.name" :src="product.image">
           </div>
           <div class="description">{{ product.title }}</div>
           <div class="price">
@@ -21,7 +21,7 @@
             <span class="amount">US$ {{ (product.price * product.quantity).toFixed(2) }}</span>
           </div>
         </div>
-        <div class="grand-total"> Grand Total: US$ {{  }}</div>
+        <div class="grand-total"> Grand Total: US$ {{ orderTotal().toFixed(2) }}</div>
       </template>
       <template v-else>
         <h4>No items in bag yet</h4>
@@ -37,7 +37,14 @@ import {mapState} from 'vuex';
 export default {
   name: 'ShoppingBasket',
   computed: mapState(['productsInBag']),
-  methods: {}
+  methods: {
+    orderTotal() {
+      return this.productsInBag.reduce(
+        (carry, item) => carry + (item.price * item.quantity),
+        0
+      );
+    }
+  }
 };
 </script>
 
